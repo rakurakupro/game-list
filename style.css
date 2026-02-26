@@ -1,21 +1,122 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-size: 1rem;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: rgb(243, 243, 243);
+*, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-}
-.title{
-    color: #333;
-}
+    body {
+      background: #f7f5f2;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      font-family: 'Noto Sans JP', sans-serif;
+      padding: 4rem 6rem;
+    }
 
-.ul{
-    list-style: none;
-    margin-top: 30px;
-}
-.li{
-    color: #333;
-    padding: 20px;
-}
+    /* ── h1 ── */
+    .title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 6vw, 4.2rem);
+      font-weight: 600;
+      color: #111;
+      letter-spacing: -0.02em;
+      margin-bottom: 3.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .title span {
+      font-style: italic;
+      font-weight: 400;
+      color: #b08d6a;
+    }
+
+    .subtitle {
+      display: none;
+    }
+
+    /* ── ul ── */
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      position: relative;
+    }
+
+    ul::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, #b08d6a, transparent);
+    }
+
+    /* ── li ── */
+    li {
+      padding-left: 1.6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%) scaleX(0);
+      transform-origin: left;
+      width: 1.2rem;
+      height: 1px;
+      background: #b08d6a;
+      transition: transform 0.3s ease;
+    }
+
+    li:hover::before {
+      transform: translateY(-50%) scaleX(1);
+    }
+
+    /* ── a ── */
+    li a {
+      display: block;
+      padding: 0.75rem 0;
+      font-size: 0.88rem;
+      font-weight: 300;
+      color: #888;
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: color 0.25s ease, padding-left 0.25s ease;
+    }
+
+    li:hover a {
+      color: #111;
+      padding-left: 0.4rem;
+    }
+
+    /* カウンター */
+    li {
+      counter-increment: item;
+    }
+
+    li a::after {
+      content: counter(item, decimal-leading-zero);
+      float: right;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.7rem;
+      color: #ccc;
+      letter-spacing: 0.05em;
+      padding-top: 0.1rem;
+      transition: color 0.25s ease;
+    }
+
+    li:hover a::after {
+      color: #b08d6a;
+    }
+
+    ul {
+      counter-reset: item;
+    }
